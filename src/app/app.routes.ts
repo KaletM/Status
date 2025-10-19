@@ -1,12 +1,7 @@
 import { Routes } from '@angular/router';
-import { MainLayout } from './features/layout/main-layout/main-layout';
+import { SalesViewComponent } from './features/sales/sales-view/sales-view';
 
 export const routes: Routes = [
-    {
-        path: '',
-        component: MainLayout,
-        children: [
-            {path: 'users', loadChildren: () => import('./features/users/usermanagement-view/usermanagement-view-module').then(m => m.UsermanagementViewModule)},
-        ]
-    },
+  { path: '', component: SalesViewComponent },
+  { path: '**', redirectTo: '' }
 ];

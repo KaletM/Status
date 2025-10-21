@@ -219,7 +219,6 @@ body {
   font-size: 18px;
 }
 
-/* responsive */
 @media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;

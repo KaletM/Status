@@ -1,4 +1,4 @@
-interface Details {
+interface Detail {
   id: string;
   productName: string;
   quantity: number;
@@ -7,4 +7,4 @@ interface Details {
   discount: number; 
   total: number; 
 }
-export default Details;
+export default Detail;

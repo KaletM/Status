@@ -1,4 +1,4 @@
-import SaleItem from "./Details";
+import SaleItem from "./Detail";
 
 interface Sale {
   id: string;

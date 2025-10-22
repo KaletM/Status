@@ -25,14 +25,26 @@ export const routes: Routes = [
       },
       {
         path: 'inventory',
-        loadComponent: () => import('./features/inventory/inventory-view/inventory-view').then((m) => m.InventoryViewComponent),
-      }
+        loadComponent: () =>
+          import('./features/inventory/inventory-view/inventory-view').then(
+            (m) => m.InventoryViewComponent
+          ),
+      },
     ],
   },
   {
     path: '',
     component: Waiterlayout,
-
-    children: [],
   },
+  {
+    path: 'sales',
+    loadComponent: () =>
+      import('./features/sales/sales-view/sales-view').then((m) => m.SalesViewComponent),
+  },
+  {
+    path: 'kitchen',
+    loadComponent: () =>
+      import('./features/kitchen-view/kitchen-view').then((m) => m.KitchenView),
+      
+  }
 ];

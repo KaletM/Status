@@ -2,10 +2,10 @@
   <div class="bar">
     <h1>Inventory Management</h1>
     <div class="cta">
-      <button class="btn primary" type="button" aria-label="new supplier order">
+      <button class="btn primary" type="button">
         <span class="icon">🛒</span><span>New supplier order</span>
       </button>
-      <button class="btn ghost" type="button" aria-label="record in or out">
+      <button class="btn ghost" type="button">
         <span class="icon">🔁</span><span>Record In/Out</span>
       </button>
     </div>
@@ -17,32 +17,29 @@
       <input placeholder="Search by product name..." />
     </div>
 
-    <div class="chip-wrap" (click)="$event.stopPropagation()">
-      <button type="button" class="chip" aria-haspopup="listbox"
-              (click)="toggle('status', $event)">
+    <div class="chip-wrap">
+      <button class="chip" type="button" (click)="toggle('status', $event)">
         {{ statusSelected }} <span class="caret">▾</span>
       </button>
-      <ul class="menu" *ngIf="showStatus" role="listbox" aria-label="filter by status">
+      <ul class="menu" *ngIf="showStatus">
         <li *ngFor="let s of statusOptions" (click)="selectStatus(s)">{{ s }}</li>
       </ul>
     </div>
 
-    <div class="chip-wrap" (click)="$event.stopPropagation()">
-      <button type="button" class="chip" aria-haspopup="listbox"
-              (click)="toggle('category', $event)">
+    <div class="chip-wrap">
+      <button class="chip" type="button" (click)="toggle('category', $event)">
         {{ categorySelected }} <span class="caret">▾</span>
       </button>
-      <ul class="menu" *ngIf="showCategory" role="listbox" aria-label="filter by category">
+      <ul class="menu" *ngIf="showCategory">
         <li *ngFor="let c of categoryOptions" (click)="selectCategory(c)">{{ c }}</li>
       </ul>
     </div>
 
-    <div class="chip-wrap" (click)="$event.stopPropagation()">
-      <button type="button" class="chip" aria-haspopup="listbox"
-              (click)="toggle('supplier', $event)">
+    <div class="chip-wrap">
+      <button class="chip" type="button" (click)="toggle('supplier', $event)">
         {{ supplierSelected }} <span class="caret">▾</span>
       </button>
-      <ul class="menu" *ngIf="showSupplier" role="listbox" aria-label="filter by supplier">
+      <ul class="menu" *ngIf="showSupplier">
         <li *ngFor="let sp of supplierOptions" (click)="selectSupplier(sp)">{{ sp }}</li>
       </ul>
     </div>
@@ -66,12 +63,12 @@
 
   <div class="footer">
     <span>Showing 1 to 5 of 20 results</span>
-    <div class="pager" role="navigation" aria-label="pagination">
-      <button class="mini" type="button" aria-label="previous page">‹</button>
-      <button class="mini active" type="button" aria-current="page">1</button>
+    <div class="pager">
+      <button class="mini" type="button">‹</button>
+      <button class="mini active" type="button">1</button>
       <button class="mini" type="button">2</button>
       <button class="mini" type="button">3</button>
-      <button class="mini" type="button" aria-label="next page">›</button>
+      <button class="mini" type="button">›</button>
     </div>
   </div>
 </section>

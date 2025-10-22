@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitchen Order Management</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Kitchen Order Management</h1>
+
+      <div class="orders-container">
+        <!-- Table 5 -->
+        <div class="order-card">
+          <div class="table-header">
+            <span>Table 5</span
+            ><button class="btn-recipe">
+              <mat-icon class="material-icons">restaurant_menu</mat-icon> View recipe
+            </button>
+          </div>
+
+          <div class="order-items">
+            <div class="order-item">Spaghetti Carbonara (2)</div>
+            <div class="order-item">Margherita Pizza (1)</div>
+          </div>
+          <div class="status status-new">Status: New</div>
+          <button class="action-button action-preparation">Mark as in Preparation</button>
+        </div>
+
+        <!-- Table 2 -->
+        <div class="order-card">
+          <div class="table-header">
+            <span>Table 2</span
+            ><button class="btn-recipe">
+              <mat-icon class="material-icons">restaurant_menu</mat-icon> View recipe
+            </button>
+          </div>
+          <div class="order-items">
+            <div class="order-item">Caesar Salad (1)</div>
+            <div class="order-item">Grilled Salmon (1)</div>
+          </div>
+          <div class="status status-preparation">Status: In Preparation</div>
+          <button class="action-button action-ready">Mark as Ready</button>
+        </div>
+
+        <!-- Table 8 -->
+        <div class="order-card">
+          <div class="table-header">
+            <span>Table 8</span
+            ><button class="btn-recipe">
+              <mat-icon class="material-icons">restaurant_menu</mat-icon> View recipe
+            </button>
+          </div>
+          <div class="order-items">
+            <div class="order-item">Cheeseburger (1)</div>
+            <div class="order-item">Fries (1)</div>
+          </div>
+          <div class="status status-ready">Status: Ready</div>
+          <button class="action-button action-completed">Completed</button>
+        </div>
+
+        <!-- Table 11 -->
+        <div class="order-card">
+          <div class="table-header">
+            <span>Table 11</span
+            ><button class="btn-recipe">
+              <mat-icon class="material-icons">restaurant_menu</mat-icon> View recipe
+            </button>
+          </div>
+          <div class="order-items">
+            <div class="order-item">Vegetable Stir-fry (1)</div>
+            <div class="order-item">Spring Rolls (2)</div>
+          </div>
+          <div class="status status-new">Status: New</div>
+          <button class="action-button action-preparation">Mark as in Preparation</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

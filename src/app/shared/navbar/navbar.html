@@ -1,8 +1,13 @@
 <nav>
-  <header class="">
+  <div class="logo">
+    <div class="logo-icon">S</div>
+    <div class="logo-text">Status</div>
+  </div>
+
+  <header>
     <img
       src="https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg"
-      alt=""
+      alt="Avatar del administrador"
     />
     <div>
       <h2>Super Admin</h2>
@@ -12,23 +17,34 @@
 
   <ul>
     <li>
-      <a routerLink="/"><mat-icon>dashboard</mat-icon>Dashboard</a>
+      <a routerLink="/admin/dashboard" routerLinkActive="active"
+        ><mat-icon>dashboard</mat-icon>Dashboard</a
+      >
     </li>
     <li>
-      <a routerLink="/about"> <mat-icon>group</mat-icon> User Management</a>
+      <a routerLink="/admin/users" routerLinkActive="active"
+        ><mat-icon>group</mat-icon> User Management</a
+      >
     </li>
     <li>
-      <a routerLink="/contact"> <mat-icon>menu_book</mat-icon> Menu</a>
+      <a routerLink="/admin/menu" routerLinkActive="active"><mat-icon>menu_book</mat-icon> Menu</a>
     </li>
     <li>
-      <a routerLink="/orders"> <mat-icon>restaurant</mat-icon> Orders</a>
+      <a routerLink="/admin/support" routerLinkActive="active"
+        ><mat-icon>support_agent</mat-icon> Support</a
+      >
     </li>
     <li>
-      <a routerLink="/settings"> <mat-icon>settings</mat-icon> Settings</a>
+      <a routerLink="/admin/support" routerLinkActive="active"
+        ><mat-icon>inventory_2</mat-icon> Invertory</a
+      >
+    </li>
+    <li>
+      <a routerLink="/admin/settings" routerLinkActive="active"><mat-icon>settings</mat-icon> Settings</a>
     </li>
   </ul>
 
   <footer>
-    <button>Logout</button>
+    <button><mat-icon>logout</mat-icon>Logout</button>
   </footer>
 </nav>

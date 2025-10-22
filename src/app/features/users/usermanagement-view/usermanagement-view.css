@@ -1,0 +1,206 @@
+main {
+    width: 100%;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #000000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    height: fit-content;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #f7fafc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-item:hover {
+    background: #edf2f7;
+}
+
+.filter-item.active {
+    background: #000000;
+    color: white;
+}
+
+.filter-item .material-icons {
+    font-size: 18px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.users-table th {
+    text-align: left;
+    padding: 1rem;
+    font-weight: 400;
+    color: #9da0a6;
+    border-bottom: 2px solid #e2e8f0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.users-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: #2d3748;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.role-admin {
+    background: #ebf8ff;
+    color: #3182ce;
+}
+
+.role-waiter {
+    background: #f0fff4;
+    color: #38a169;
+}
+
+.role-cook {
+    background: #fffaf0;
+    color: #dd6b20;
+}
+
+.role-cashier {
+    background: #faf5ff;
+    color: #805ad5;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background: #f0fff4;
+    color: #38a169;
+}
+
+.status-inactive {
+    background: #fed7d7;
+    color: #e53e3e;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #718096;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-btn:hover {
+    background: #edf2f7;
+    color: #4299e1;
+}
+
+.action-btn.edit:hover {
+    color: #3182ce;
+}
+
+.action-btn.delete:hover {
+    color: #e53e3e;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .users-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .filters {
+        flex-direction: column;
+    }
+}

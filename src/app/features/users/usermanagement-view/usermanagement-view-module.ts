@@ -1,15 +1,25 @@
 import { NgModule } from '@angular/core';
+
+import { UsermanagementView } from './usermanagement-view';
+import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { UsermanagementViewRoutingModule } from './usermanagement-view-routing-module';
-import { UsermanagementView } from './usermanagement-view';
-import { RouterModule } from '@angular/router';
+const routes: Routes = [
+  { path: '', component: UsermanagementView },
+  {
+    path: 'new',
+    loadComponent: () =>
+      import('../usermanagement-view-create/usermanagement-view-create').then(
+        (m) => m.UsermanagementViewCreate
+      ),
+  },
+];
 
 @NgModule({
   imports: [
-    RouterModule,
-    UsermanagementView  // ✅ Se importa, no se declara
-  ]
+    CommonModule,
+    RouterModule.forChild(routes),
+    UsermanagementView, // ✅ Se importa, no se declara
+  ],
 })
-
-export class UsermanagementViewModule { }
+export class UsermanagementViewModule {}

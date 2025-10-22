@@ -1,16 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { baseUrl, isTesting } from './ServiceSettings';
+import { HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from '../error-handler';
-import { baseUrl } from './ServiceSettings';
-import { isTesting } from './ServiceSettings';
-import usersTestdata from '../testdata/Users';
-import User from '../entities/User';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class ProductsService {
   
   private apiUrl = isTesting ? `${baseUrl}test/users` : `${baseUrl}users`;
 
@@ -18,18 +15,18 @@ export class UsersService {
     private http: HttpClient,
     private errorHandler: ErrorHandlerService) {  }
 
-  getData() : Observable<User[]> {
+  getData() : Observable<Product[]> {
 
     if (isTesting) {
       console.log('Fetching data in test mode');
       
-      return new Observable<User[]>(subscriber => {
-        subscriber.next(usersTestdata);
+      return new Observable<Product[]>(subscriber => {
+        subscriber.next(productsTestData);
         subscriber.complete();
       });
     }
 
-    return this.http.get<User[]>(`${this.apiUrl}/data`).pipe(
+    return this.http.get<Product[]>(`${this.apiUrl}/data`).pipe(
       catchError((error => {
         this.errorHandler.handleError(error);
         throw throwError(() => error);
@@ -37,12 +34,12 @@ export class UsersService {
     );
   }
 
-  postData(data: User) : Observable<User> {
+  postData(data: Product) : Observable<Product> {
 
     if (isTesting) {
       console.log('Posting data in test mode:', data);
-      usersTestdata.push(data);
-      return new Observable<User>(subscriber => {
+      productsTestData.push(data);
+      return new Observable<Product>(subscriber => {
         subscriber.next(data);
         subscriber.complete();
       });
@@ -51,17 +48,17 @@ export class UsersService {
     return this.http.post<any>(`${this.apiUrl}/data`, data);
   }
 
-  updateData(id: string, data: User) : Observable<User> {
+  updateData(id: string, data: Product) : Observable<Product> {
 
 
     if (isTesting) {
-      usersTestdata.forEach((item, index) => {
+      productsTestData.forEach((item, index) => {
         if (item.id === id) {
-          usersTestdata[index] = data;
+          productsTestData[index] = data;
         }
       });
 
-      return new Observable<User>(subscriber => {
+      return new Observable<Product>(subscriber => {
         subscriber.next(data);
         subscriber.complete();
       });
@@ -74,9 +71,9 @@ export class UsersService {
 
     if (isTesting) {
       console.log('Deleting data in test mode:', id);
-      const index = usersTestdata.findIndex(item => item.id === id);
+      const index = productsTestData.findIndex(item => item.id === id);
       if (index !== -1) {
-        usersTestdata.splice(index, 1);
+        productsTestData.splice(index, 1);
       }
       return new Observable<void>(subscriber => {
         subscriber.next();
@@ -86,5 +83,6 @@ export class UsersService {
 
     return this.http.delete<void>(`${this.apiUrl}/data/${id}`);
   }
+
 
 }

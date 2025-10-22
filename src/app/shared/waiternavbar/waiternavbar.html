@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Pedidos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="section-1">
+        <header class="header">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3462/3462049.png"
+            width="80px"
+            height="80px"
+            alt=""
+          />
+          <div>
+            <h1>John Doe</h1>
+            <h2>Waiter</h2>
+          </div>
+        </header>
+
+        <div class="divider"></div>
+        <!-- Sección Starters -->
+
+        <ul class="categories">
+          <span class="category">
+            <a href=""><mat-icon>restaurant_menu</mat-icon>Starters</a></span
+          >
+          <span class="category">
+            <a href=""><mat-icon>local_bar</mat-icon>Drinks</a></span
+          >
+          <span class="category">
+            <a href=""><mat-icon>cake</mat-icon>Desserts</a></span
+          >
+          <span class="category">
+            <a href=""><mat-icon>dining</mat-icon>Main Courses</a></span
+          >
+        </ul>
+      </div>
+
+      <div class="section-2">
+        <!-- Estados de pedidos -->
+        <section class="order-status">
+          <div class="status-item">
+            <span class="status-label">Order #101 - In Kitchen</span>
+          </div>
+          <div class="status-item ready">
+            <span class="status-label">Order #102 - Ready</span>
+          </div>
+          <div class="status-item delivered">
+            <span class="status-label">Order #103 - Delivered</span>
+          </div>
+        </section>
+
+        <!-- Separador -->
+        <div class="divider"></div>
+
+        <!-- Barra de búsqueda -->
+        <section class="search">
+          <input type="text" placeholder="Search for a product..." class="search-input" />
+        </section>
+
+        <!-- Lista de productos -->
+        <section class="products">
+          <div class="product-item">
+            <img
+              src="https://lovefoodfeed.com/wp-content/uploads/2023/09/Pesto-ciabatta-bruschetta-1200-07.jpg"
+              width="168px"
+              height="168px"
+              alt=""
+            />
+            <span class="product-name">Bruschetta</span>
+            <span class="product-price">$8.99</span>
+          </div>
+          <div class="product-item">
+            <img
+              src="https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2019/07/Caprese-Salad-2-2.jpg"
+              width="168px"
+              height="168px"
+              alt=""
+            />
+            <span class="product-name">Caprese Salad</span>
+            <span class="product-price">$10.50</span>
+          </div>
+          <div class="product-item">
+            <img
+              src="https://delightfuladventures.com/wp-content/uploads/2023/09/vegan-garlic-bread-recipe.jpg"
+              width="168px"
+              height="168px"
+              alt=""
+            />
+            <span class="product-name">Garlic Bread</span>
+            <span class="product-price">$6.00</span>
+          </div>
+          <div class="product-item">
+            <img
+              src="https://www.chopstickchronicles.com/wp-content/uploads/2016/05/Fried-Calamari-with-Wasabi-Mayo-4.jpg"
+              width="168px"
+              height="168px"
+              alt=""
+            />
+            <span class="product-name">Fried Calamari</span>
+            <span class="product-price">$12.00</span>
+          </div>
+          <div class="product-item">
+            <img
+              src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/stuffed-mushrooms-fd50faf.jpg"
+              width="168px"
+              height="168px"
+              alt=""
+            />
+            <span class="product-name">Stuffed Mushrooms</span>
+            <span class="product-price">$9.50</span>
+          </div>
+          <div class="product-item">
+            <img
+              src="https://www.thespruceeats.com/thmb/IzI21XI-Gg07LQnFEu57xYVnA7w=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/spinach-and-artichoke-dip-4157518-07-8685813570f34ac89c090084c042266d.jpg"
+              width="168px"
+              height="168px"
+              alt=""
+            />
+            <span class="product-name">Spinach Artichoke Dip</span>
+            <span class="product-price">$11.00</span>
+          </div>
+        </section>
+      </div>
+
+      <div class="section-3">
+        <section class="current-order">
+          <h3>Current Order</h3>
+
+          <div class="order-table">
+            <div class="table-header">
+              <span>Item</span>
+              <span>Notes</span>
+              <span>Price</span>
+            </div>
+            <div class="table-row">
+              <span class="item-name">Bruschetta</span>
+              <span class="item-notes">Add notes (e.g. no one)</span>
+              <span class="item-price">$8.99</span>
+            </div>
+            <div class="table-row">
+              <span class="item-name">Caprese Salad</span>
+              <span class="item-notes">extra basil</span>
+              <span class="item-price">$10.50</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Resumen de pago -->
+        <section class="payment-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span></span>
+          </div>
+          <div class="summary-row">
+            <span>Tax (5%)</span>
+            <span></span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>$21.05</span>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn split-bill">Split Bill</button>
+            <button class="btn send-kitchen">Send to Kitchen</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,12 +1,22 @@
 import { Routes } from '@angular/router';
 import { MainLayout } from './features/layout/main-layout/main-layout';
+import { Waiterlayout } from './features/waiterlayout/waiterlayout';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'admin',
         component: MainLayout,
+        
         children: [
             {path: 'users', loadChildren: () => import('./features/users/usermanagement-view/usermanagement-view-module').then(m => m.UsermanagementViewModule)},
+            {path: 'menu', loadComponent: () => import('./features/menu/menu-view').then(m => m.MenumanagementView)},
         ]
     },
+    {
+        path: '',
+        component: Waiterlayout,
+
+        children: []
+    }
+    
 ];

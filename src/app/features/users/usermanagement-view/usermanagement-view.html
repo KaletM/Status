@@ -1,13 +1,169 @@
-<div *ngIf="data.length > 0; else noData">
-  <ul>
-    <li *ngFor="let item of data">{{ item.name }}</li>
-  </ul>
-</div>
-<ng-template #noData>
-  <p>No data available.</p>
-</ng-template>
+<main>
+  <div class="page-header">
+    <div>
+      <h1>User Management</h1>
+  
+      <div class="filters">
+        <div class="filter-item active">
+          All
+        </div>
+        <div class="filter-item">
+          Administrator
+        </div>
+        <div class="filter-item">
+          Waiter
+        </div>
+        <div class="filter-item">
+          Cook
+        </div>
+        <div class="filter-item">
+          Cashier
+        </div>
+      </div>
+    </div>
 
-<form (ngSubmit)="onSubmit(formData)">
-  <input [(ngModel)]="formData.name" name="name" required />
-  <button type="submit">Submit</button>
-</form>
+    <a class="add-user-btn" routerLink="/admin/users/new">
+      <span class="material-icons">person_add</span>
+      Add User
+    </a>
+  </div>
+
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>ROLE</th>
+        <th>EMAIL</th>
+        <th>STATUS</th>
+        <th>ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <div class="user-info">
+            <div class="user-avatar">JD</div>
+            <div class="user-name">John Doe</div>
+          </div>
+        </td>
+        <td>
+          <span class="role-badge role-admin">Administrator</span>
+        </td>
+        <td>john.doe@email.com</td>
+        <td>
+          <span class="status-badge status-active">Active</span>
+        </td>
+        <td>
+          <div class="actions">
+            <button class="action-btn edit">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="action-btn delete">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="user-info">
+            <div class="user-avatar">JS</div>
+            <div class="user-name">Jane Smith</div>
+          </div>
+        </td>
+        <td>
+          <span class="role-badge role-waiter">Waiter</span>
+        </td>
+        <td>jane.smith@email.com</td>
+        <td>
+          <span class="status-badge status-active">Active</span>
+        </td>
+        <td>
+          <div class="actions">
+            <button class="action-btn edit">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="action-btn delete">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="user-info">
+            <div class="user-avatar">PJ</div>
+            <div class="user-name">Peter Jones</div>
+          </div>
+        </td>
+        <td>
+          <span class="role-badge role-cook">Cook</span>
+        </td>
+        <td>peter.jones@email.com</td>
+        <td>
+          <span class="status-badge status-inactive">Inactive</span>
+        </td>
+        <td>
+          <div class="actions">
+            <button class="action-btn edit">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="action-btn delete">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="user-info">
+            <div class="user-avatar">MW</div>
+            <div class="user-name">Mary Williams</div>
+          </div>
+        </td>
+        <td>
+          <span class="role-badge role-cashier">Cashier</span>
+        </td>
+        <td>mary.williams@email.com</td>
+        <td>
+          <span class="status-badge status-active">Active</span>
+        </td>
+        <td>
+          <div class="actions">
+            <button class="action-btn edit">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="action-btn delete">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="user-info">
+            <div class="user-avatar">DB</div>
+            <div class="user-name">David Brown</div>
+          </div>
+        </td>
+        <td>
+          <span class="role-badge role-waiter">Waiter</span>
+        </td>
+        <td>david.brown@email.com</td>
+        <td>
+          <span class="status-badge status-active">Active</span>
+        </td>
+        <td>
+          <div class="actions">
+            <button class="action-btn edit">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="action-btn delete">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</main>

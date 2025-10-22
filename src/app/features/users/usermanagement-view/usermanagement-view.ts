@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import User from '@app/core/entities/User';
 import { UsersService } from '@app/core/services/usersService';
 import { response } from 'express';
@@ -8,7 +10,7 @@ import { response } from 'express';
 @Component({
   standalone: true,
   selector: 'app-usermanagement-view',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,MatIconModule,RouterLink],
   templateUrl: './usermanagement-view.html',
   styleUrl: './usermanagement-view.css',
 })
@@ -20,6 +22,8 @@ export class UsermanagementView implements OnInit {
     id: '',
     name: '',
     email: '',
+    password: '',
+    role: 'admin',
     createdAt: new Date(),
     updatedAt: new Date()
   }

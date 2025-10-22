@@ -9,7 +9,8 @@ import { Navbar } from '@app/shared/navbar/navbar';
     RouterOutlet
   ],
   templateUrl: './main-layout.html',
-  styleUrl: './main-layout.css'
+  styleUrl: './main-layout.css',
+  standalone: true
 })
 export class MainLayout {
 

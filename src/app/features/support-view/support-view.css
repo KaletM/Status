@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    margin: 0;
+    color: #333;
+}
+
+.support-container {
+    width: 100%;
+    border-radius: 12px;
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: 650px;
+}
+
+.support-container::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+}
+
+.support-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color del fondo del track */
+}
+
+.support-container::-webkit-scrollbar-thumb {
+    background: rgb(45, 55, 72); /* Color del scroll */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+.support-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del scroll al pasar el mouse */
+}
+
+.support-header {
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.support-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 1.5rem;
+}
+
+.ticket-form {
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+.incident-history {
+    padding: 25px;
+}
+
+.incident-history h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f8f9fa;
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 2px solid #eaeaea;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.status-resolved {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.status-in-progress {
+    color: #f39c12;
+    font-weight: 600;
+}
+
+.status-open {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.pagination-info {
+    margin-top: 15px;
+    text-align: right;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    th, td {
+        white-space: nowrap;
+    }
+}

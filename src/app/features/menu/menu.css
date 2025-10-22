@@ -78,8 +78,9 @@ main {
     place-items: center;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     overflow-y: auto;
-    max-height: 500px;
+    max-height: 450px;
     padding: 1rem 0;
+
 }
 
 .products::-webkit-scrollbar {

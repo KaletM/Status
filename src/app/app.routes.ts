@@ -30,6 +30,11 @@ export const routes: Routes = [
             (m) => m.InventoryViewComponent
           ),
       },
+      {
+        path: 'support',
+        loadComponent: () =>
+          import('./features/support-view/support-view').then((m) => m.SupportView),
+      }
     ],
   },
   {

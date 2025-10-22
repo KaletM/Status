@@ -1,7 +1,11 @@
-import { Routes } from '@angular/router'
-import { InventoryViewComponent } from './features/inventory/inventory-view/inventory-view'
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: 'inventory', component: InventoryViewComponent },
-  { path: '', redirectTo: 'inventory', pathMatch: 'full' }
-]
+  {
+    path: 'sales',
+    loadComponent: () =>
+      import('./features/sales/sales-view/sales-view')
+        .then(m => m.SalesViewComponent) 
+  },
+  { path: '', redirectTo: 'sales', pathMatch: 'full' }
+];

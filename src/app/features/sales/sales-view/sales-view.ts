@@ -42,11 +42,9 @@ export class SalesViewComponent implements OnInit {
   constructor(private salesService: SalesService) {}
 
   ngOnInit(): void {
-    // carga de datos de prueba del servicio
     this.salesService.getSales().subscribe((sales: Sale[]) => {
       this.sales = sales;
 
-      // toma la primera venta para mostrarla en la UI actual
       const s = this.sales[0];
       if (s) {
         this.order.items = s.items.map(i => ({

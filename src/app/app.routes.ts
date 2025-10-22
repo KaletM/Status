@@ -8,6 +8,7 @@ export const routes: Routes = [
         component: MainLayout,
         
         children: [
+            {path: 'dashboard', loadComponent: () => import('./features/dashboard/dashboard').then(m => m.Dashboard)},
             {path: 'users', loadChildren: () => import('./features/users/usermanagement-view/usermanagement-view-module').then(m => m.UsermanagementViewModule)},
             {path: 'menu', loadComponent: () => import('./features/menu/menu-view').then(m => m.MenumanagementView)},
         ]

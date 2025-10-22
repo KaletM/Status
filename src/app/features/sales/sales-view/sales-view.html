@@ -1,0 +1,79 @@
+<div class="page">
+  <h1>Finalize Order</h1>
+  <p class="subtitle">Review the order details and select a payment method.</p>
+
+  <div class="grid">
+    <!-- left: order -->
+    <section class="card">
+      <h2>Order Summary</h2>
+
+      <ul class="items">
+        <li class="item-row" *ngFor="let it of order.items">
+          <div class="thumb"></div>
+          <div class="info">
+            <div class="name">{{ it.productName }}</div>
+            <div class="muted">Quantity: {{ it.quantity }}</div>
+          </div>
+          <div class="price">${{ it.unitPrice.toFixed(2) }}</div>
+        </li>
+      </ul>
+
+      <div class="totals">
+        <div class="row"><span>Subtotal</span><span>${{ order.subtotal.toFixed(2) }}</span></div>
+        <div class="row"><span>Taxes (VAT)</span><span>${{ order.taxes.toFixed(2) }}</span></div>
+        <div class="row"><span>Discount</span><span>-${{ order.discount.toFixed(2) }}</span></div>
+      </div>
+
+      <div class="grand">
+        <span>Total</span>
+        <span>${{ order.total.toFixed(2) }}</span>
+      </div>
+    </section>
+
+    <!-- right: actions -->
+    <section class="right">
+      <div class="card">
+        <h2>Discount / Coupon</h2>
+        <div class="coupon">
+          <input type="text" [(ngModel)]="couponCode" name="couponCode" placeholder="Enter code" />
+          <button class="btn" (click)="applyCoupon()">Apply</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Select Payment Method</h2>
+        <div class="pay-grid">
+          <button class="pay-btn"
+                  [class.selected]="order.paymentMethod === 'cash'"
+                  (click)="selectPayment('cash')">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3zM5 9v6m14-6v6M8 12a4 4 0 1 0 8 0" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Cash</span>
+          </button>
+
+          <button class="pay-btn"
+                  [class.selected]="order.paymentMethod === 'card'"
+                  (click)="selectPayment('card')">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Card</span>
+          </button>
+
+          <button class="pay-btn"
+                  [class.selected]="order.paymentMethod === 'transfer'"
+                  (click)="selectPayment('transfer')">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10h18M5 10V7h14v3M5 14v3h14v-3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span>Transfer</span>
+          </button>
+        </div>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" [(ngModel)]="order.sendInvoice" name="sendInvoice" />
+        <span>Send electronic invoice</span>
+      </label>
+
+      <button class="invoice-btn" (click)="finalizeOrder()">
+        <span class="receipt">🧾</span> Invoice
+      </button>
+    </section>
+  </div>
+</div>

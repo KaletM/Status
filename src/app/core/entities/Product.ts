@@ -1,12 +1,12 @@
-type categories = 'starters' | 'drinks' | 'desserts' | 'mains';
-
-interface Product {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    category: categories;
-    stock: number;
-    createdAt: Date;
-    updatedAt: Date;
+export default interface Product {
+  id: string
+  empresaId: string
+  nombre: string
+  categoriaId?: string
+  unidadMedida: string
+  stockActual: number
+  stockMinimo: number
+  precioCostoPromedio?: number
+  createdAt: Date
+  updatedAt: Date
 }

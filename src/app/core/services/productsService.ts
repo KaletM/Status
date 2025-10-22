@@ -3,6 +3,8 @@ import { baseUrl, isTesting } from './ServiceSettings';
 import { HttpClient } from '@angular/common/http';
 import { ErrorHandlerService } from '../error-handler';
 import { Observable, catchError, throwError } from 'rxjs';
+import productsTestdata from '../testdata/Products';
+import Product from '../entities/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,7 @@ export class ProductsService {
       console.log('Fetching data in test mode');
       
       return new Observable<Product[]>(subscriber => {
-        subscriber.next(productsTestData);
+        subscriber.next(productsTestdata);
         subscriber.complete();
       });
     }
@@ -38,7 +40,7 @@ export class ProductsService {
 
     if (isTesting) {
       console.log('Posting data in test mode:', data);
-      productsTestData.push(data);
+      productsTestdata.push(data);
       return new Observable<Product>(subscriber => {
         subscriber.next(data);
         subscriber.complete();
@@ -52,9 +54,9 @@ export class ProductsService {
 
 
     if (isTesting) {
-      productsTestData.forEach((item, index) => {
+      productsTestdata.forEach((item, index) => {
         if (item.id === id) {
-          productsTestData[index] = data;
+          productsTestdata[index] = data;
         }
       });
 
@@ -71,9 +73,9 @@ export class ProductsService {
 
     if (isTesting) {
       console.log('Deleting data in test mode:', id);
-      const index = productsTestData.findIndex(item => item.id === id);
+      const index = productsTestdata.findIndex(item => item.id === id);
       if (index !== -1) {
-        productsTestData.splice(index, 1);
+        productsTestdata.splice(index, 1);
       }
       return new Observable<void>(subscriber => {
         subscriber.next();

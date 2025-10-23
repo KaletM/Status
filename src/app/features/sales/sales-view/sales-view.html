@@ -8,7 +8,7 @@
 
       <ul class="items">
         <li class="item-row" *ngFor="let it of order.items">
-          <div class="thumb"></div>
+          <img class="thumb" [src]=" it.icon "/>
           <div class="info">
             <div class="name">{{ it.productName }}</div>
             <div class="muted">Quantity: {{ it.quantity }}</div>

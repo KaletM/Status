@@ -20,13 +20,14 @@ export class SalesViewComponent implements OnInit {
 
   // lo que pide tu HTML
   order: {
-    items: { id: string; productName: string; quantity: number; unitPrice: number; taxAmount: number; discount: number; total: number }[];
+    items: { id: string; productName: string; quantity: number; unitPrice: number; taxAmount: number; discount: number; total: number; icon: string; }[];
     subtotal: number;
     taxes: number;
     discount: number;
     total: number;
     paymentMethod: Payment;
     sendInvoice: boolean;
+
   } = {
     items: [],
     subtotal: 0,
@@ -46,6 +47,7 @@ export class SalesViewComponent implements OnInit {
       this.sales = sales;
 
       const s = this.sales[0];
+      
       if (s) {
         this.order.items = s.items.map(i => ({
           id: i.id,
@@ -55,7 +57,9 @@ export class SalesViewComponent implements OnInit {
           taxAmount: i.taxAmount,
           discount: i.discount,
           total: i.total,
-        }));
+          icon: i.icon
+        }));  
+
         this.recompute();
         this.order.paymentMethod = (s as any).paymentMethod ?? 'cash';
       }

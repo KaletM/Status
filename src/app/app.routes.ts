@@ -40,5 +40,20 @@ export const routes: Routes = [
   {
     path: '',
     component: Waiterlayout,
+  },
+  {
+    path: 'companies',
+    loadComponent: () =>
+      import('./features/companies/company-view/company-view').then((m) => m.CompanyViewComponent),
+  },
+  {
+    path: 'sales',
+    loadComponent: () =>
+      import('./features/sales/sales-view/sales-view').then((m) => m.SalesViewComponent),
+  },
+  {
+    path: 'kitchen',
+    loadComponent: () => 
+      import('./features/kitchen-view/kitchen-view').then((m) => m.KitchenView)
   }
 ];

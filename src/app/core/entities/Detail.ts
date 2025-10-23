@@ -5,6 +5,7 @@ interface Detail {
   unitPrice: number;
   taxAmount: number; 
   discount: number; 
+  icon: string;
   total: number; 
 }
 export default Detail;

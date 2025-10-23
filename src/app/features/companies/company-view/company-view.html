@@ -1,54 +1,57 @@
-<div class="page">
-  <div class="toolbar">
-    <h1>Company Management</h1>
-    <button class="btn-primary" (click)="onAdd()">
-      <span class="plus">＋</span>
-      Add Company
-    </button>
-  </div>
 
-  <div class="searchbar">
-    <span class="icon">🔍</span>
-    <input
-      type="text"
-      placeholder="Search by company name or address"
-      [(ngModel)]="query"
-      (ngModelChange)="filter()"
-    />
-  </div>
-
-  <div class="card table">
-    <div class="thead">
-      <div>COMPANY NAME</div>
-      <div>ADDRESS</div>
-      <div>CONTACT PERSON</div>
-      <div>CONTACT PHONE</div>
-      <div>STATUS</div>
-      <div class="actions-col"></div>
+<main>
+  <div class="page">
+    <div class="toolbar">
+      <h1>Company Management</h1>
+      <button class="btn-primary" (click)="onAdd()">
+        <span class="plus">＋</span>
+        Add Company
+      </button>
     </div>
-
-    <div class="row" *ngFor="let c of filtered">
-      <div class="cell bold">{{ c.name | titlecase }}</div>
-      <div class="cell">{{ c.address | titlecase }}</div>
-      <div class="cell">{{ c.contactPerson | titlecase }}</div>
-      <div class="cell">{{ c.contactPhone }}</div>
-      <div class="cell">
-        <span class="badge" [class.badge-active]="c.status==='active'" [class.badge-inactive]="c.status==='inactive'">
-          {{ c.status | titlecase }}
-        </span>
+  
+    <div class="searchbar">
+      <span class="icon">🔍</span>
+      <input
+        type="text"
+        placeholder="Search by company name or address"
+        [(ngModel)]="query"
+        (ngModelChange)="filter()"
+      />
+    </div>
+  
+    <div class="card table">
+      <div class="thead">
+        <div>COMPANY NAME</div>
+        <div>ADDRESS</div>
+        <div>CONTACT PERSON</div>
+        <div>CONTACT PHONE</div>
+        <div>STATUS</div>
+        <div class="actions-col"></div>
       </div>
-      <div class="cell actions">
-        <button class="icon-btn" title="Edit" (click)="onEdit(c.id)">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.002 1.002 0 0 0 0-1.41l-2.34-2.34a1.002 1.002 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
-          </svg>
-        </button>
-        <button class="icon-btn danger" title="Delete" (click)="onDelete(c.id)">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-            <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
-          </svg>
-        </button>
+  
+      <div class="row" *ngFor="let c of filtered">
+        <div class="cell bold">{{ c.name | titlecase }}</div>
+        <div class="cell">{{ c.address | titlecase }}</div>
+        <div class="cell">{{ c.contactPerson | titlecase }}</div>
+        <div class="cell">{{ c.contactPhone }}</div>
+        <div class="cell">
+          <span class="badge" [class.badge-active]="c.status==='active'" [class.badge-inactive]="c.status==='inactive'">
+            {{ c.status | titlecase }}
+          </span>
+        </div>
+        <div class="cell actions">
+          <button class="icon-btn" title="Edit" (click)="onEdit(c.id)">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.002 1.002 0 0 0 0-1.41l-2.34-2.34a1.002 1.002 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path>
+            </svg>
+          </button>
+          <button class="icon-btn danger" title="Delete" (click)="onDelete(c.id)">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>  
+</main>

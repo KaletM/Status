@@ -40,7 +40,77 @@ const companiesTestdata: Company[] = [
     status: 'active',
     createdAt: new Date('2024-04-20T16:45:00Z'),
     updatedAt: new Date('2024-04-20T16:45:00Z')
-  }
+  },
+  {
+    id: '4',
+    name: 'McDonald\'s',
+    address: '101 Elm St, Anytown USA',
+    contactPerson: 'Mary Johnson',
+    contactPhone: '555-3456',
+    status: 'active',
+    createdAt: new Date('2024-04-20T16:45:00Z'),
+    updatedAt: new Date('2024-04-20T16:45:00Z')
+  },
+  {
+    id: '4',
+    name: 'McDonald\'s',
+    address: '101 Elm St, Anytown USA',
+    contactPerson: 'Mary Johnson',
+    contactPhone: '555-3456',
+    status: 'active',
+    createdAt: new Date('2024-04-20T16:45:00Z'),
+    updatedAt: new Date('2024-04-20T16:45:00Z')
+  },
+  {
+    id: '4',
+    name: 'McDonald\'s',
+    address: '101 Elm St, Anytown USA',
+    contactPerson: 'Mary Johnson',
+    contactPhone: '555-3456',
+    status: 'active',
+    createdAt: new Date('2024-04-20T16:45:00Z'),
+    updatedAt: new Date('2024-04-20T16:45:00Z')
+  },
+  {
+    id: '4',
+    name: 'McDonald\'s',
+    address: '101 Elm St, Anytown USA',
+    contactPerson: 'Mary Johnson',
+    contactPhone: '555-3456',
+    status: 'active',
+    createdAt: new Date('2024-04-20T16:45:00Z'),
+    updatedAt: new Date('2024-04-20T16:45:00Z')
+  },
+  {
+    id: '4',
+    name: 'McDonald\'s',
+    address: '101 Elm St, Anytown USA',
+    contactPerson: 'Mary Johnson',
+    contactPhone: '555-3456',
+    status: 'active',
+    createdAt: new Date('2024-04-20T16:45:00Z'),
+    updatedAt: new Date('2024-04-20T16:45:00Z')
+  },
+  {
+    id: '4',
+    name: 'McDonald\'s',
+    address: '101 Elm St, Anytown USA',
+    contactPerson: 'Mary Johnson',
+    contactPhone: '555-3456',
+    status: 'active',
+    createdAt: new Date('2024-04-20T16:45:00Z'),
+    updatedAt: new Date('2024-04-20T16:45:00Z')
+  },
+  {
+    id: '4',
+    name: 'McDonald\'s',
+    address: '101 Elm St, Anytown USA',
+    contactPerson: 'Mary Johnson',
+    contactPhone: '555-3456',
+    status: 'active',
+    createdAt: new Date('2024-04-20T16:45:00Z'),
+    updatedAt: new Date('2024-04-20T16:45:00Z')
+  },
 ]
 
 export default companiesTestdata

@@ -15,7 +15,7 @@ type Row = {
 @Component({
   selector: 'app-inventory-view',
   standalone: true,
-  imports: [CommonModule, MatIcon],
+  imports: [CommonModule],
   templateUrl: './inventory-view.html',
   styleUrls: ['./inventory-view.css']
 })

@@ -7,21 +7,15 @@
     height: 100%;
 }
 
-.dashboard-container {
-    display: flex;
-    min-height: 100vh;
-    background-color: #f8f9fa;
-}
-
 /* Main Content */
 .main-content {
     flex-grow: 1;
     padding: 30px;
-    background-color: #f8f9fa;
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    /* overflow-y: auto; <--- ELIMINADO */
+    gap: 10px;
+    overflow-y: auto;
+     
 }
 
 .dashboard-header {
@@ -32,9 +26,10 @@
 }
 
 .dashboard-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: rgb(45, 55, 72);
     margin: 0;
-    color: #333;
-    font-size: 1.8em;
 }
 
 .user-profile {

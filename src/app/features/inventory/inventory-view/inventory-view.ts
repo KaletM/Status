@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { InventoryService } from '../../../core/services/inventoryService';
 import Product from '../../../core/entities/Product';
+import { MatIcon } from "@angular/material/icon";
 
 type Row = {
   name: string;
@@ -15,7 +15,7 @@ type Row = {
 @Component({
   selector: 'app-inventory-view',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './inventory-view.html',
   styleUrls: ['./inventory-view.css']
 })

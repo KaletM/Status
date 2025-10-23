@@ -6,17 +6,16 @@
 }
 
 body {
-    background-color: #f5f7fa;
     margin: 0;
     color: #333;
+    width: 100%;
 }
 
 .support-container {
     width: 100%;
     border-radius: 12px;
     padding: 2rem;
-    overflow-y: auto;
-    max-height: 650px;
+    max-height: 500px;
 }
 
 .support-container::-webkit-scrollbar {
@@ -109,7 +108,26 @@ body {
 
 .incident-history {
     padding: 25px;
+    overflow-y: auto;
+    max-height: 250px;
 }
+
+.incident-history::-webkit-scrollbar {
+    width: 8px; /* Ancho del scroll */
+}
+
+.incident-history::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color del fondo del track */
+}
+
+.incident-history::-webkit-scrollbar-thumb {
+    background: rgb(45, 55, 72); /* Color del scroll */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+.incident-history::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del scroll al pasar el mouse */
+}   
 
 .incident-history h2 {
     margin-bottom: 20px;

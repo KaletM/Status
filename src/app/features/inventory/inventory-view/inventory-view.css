@@ -37,6 +37,11 @@
   transition: all 0.2s ease;
   font-weight: 500;
 }
+
+mat-icon{
+  font-size: 14px; /* Tamaño del ícono */
+}
+
 .btn.primary {
   background: #2f6df6;
   color: #fff;

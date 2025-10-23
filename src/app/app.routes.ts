@@ -40,12 +40,5 @@ export const routes: Routes = [
   {
     path: '',
     component: Waiterlayout,
-  },
-  {
-    path: 'companies',
-    loadComponent: () =>
-      import('./features/sales/sales-view/sales-view')
-        .then(m => m.SalesViewComponent) 
-  },
-  { path: '', redirectTo: 'sales', pathMatch: 'full' }
+  }
 ];

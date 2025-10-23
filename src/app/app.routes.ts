@@ -42,14 +42,10 @@ export const routes: Routes = [
     component: Waiterlayout,
   },
   {
-    path: 'sales',
+    path: 'companies',
     loadComponent: () =>
-      import('./features/sales/sales-view/sales-view').then((m) => m.SalesViewComponent),
+      import('./features/sales/sales-view/sales-view')
+        .then(m => m.SalesViewComponent) 
   },
-  {
-    path: 'kitchen',
-    loadComponent: () =>
-      import('./features/kitchen-view/kitchen-view').then((m) => m.KitchenView),
-      
-  }
+  { path: '', redirectTo: 'sales', pathMatch: 'full' }
 ];

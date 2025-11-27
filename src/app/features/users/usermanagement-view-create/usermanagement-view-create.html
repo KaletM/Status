@@ -10,18 +10,14 @@
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="form-grid">
         <div class="form-group">
-          <label for="firstName" class="required">First Name</label>
+          <label for="firstName" class="required">User Name</label>
           <input
             type="text"
-            formControlName="firstName"
+            formControlName="username"
             placeholder="Enter first name"
           />
         </div>
 
-        <div class="form-group">
-          <label for="lastName" class="required">Last Name</label>
-          <input type="text" formControlName="lastName" placeholder="Enter last name" />
-        </div>
 
         <div class="form-group">
           <label for="email" class="required">Email Address</label>
@@ -29,44 +25,19 @@
         </div>
 
         <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" formControlName="phone" placeholder="Enter phone number" />
+          <label for="password">Phone Number</label>
+          <input type="password" formControlName="passwordHash" placeholder="Enter password" />
         </div>
 
         <div class="form-group full-width">
-          <label class="required">Role</label>
-          <div class="roles-grid">
-            <div
-              class="role-badge role-admin"
-              [class.selected]="userForm.get('role')?.value === 'administrador'"
-              (click)="userForm.get('role')?.setValue('administrador')"
-            >
-              Administrator
-            </div>
-            <div
-              class="role-badge role-waiter"
-                [class.selected]="userForm.get('role')?.value === 'waiter'"
-                (click)="userForm.get('role')?.setValue('waiter')"
-            >
-              Waiter
-            </div>
-            <div
-              class="role-badge role-cook"
-              [class.selected]="userForm.get('role')?.value === 'cook'"
-              (click)="userForm.get('role')?.setValue('cook')"
-            >
-              Cook
-            </div>
-            <div
-              class="role-badge role-cashier"
-              [class.selected]="userForm.get('role')?.value === 'cashier'"
-              (click)="userForm.get('role')?.setValue('cashier')"
-            >
-              Cashier
-            </div>
-          </div>
+          <label class="required" for="role">Role</label>
+          <select formControlName="roleId" id="role" class="form-control">
+            <option value="2">Administrator</option>
+            <option value="4">Waiter</option>
+            <option value="5">Cook</option>
+            <option value="6">Cashier</option>
+          </select>
         </div>
-
 
       </div>
 

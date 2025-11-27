@@ -5,6 +5,8 @@ import { CompaniesService } from '../../../core/services/companiesService'
 import Company from '../../../core/entities/Company'
 import { AuthService } from '@app/core/services/authService'
 import { UsersService } from '@app/core/services/usersService'
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-company-view',
@@ -17,7 +19,7 @@ export class CompanyCreateComponent implements OnInit {
 
   companyForm!: FormGroup
 
-  constructor(private companiesService: CompaniesService,private authService: AuthService, private usersService: UsersService) {}
+  constructor(private companiesService: CompaniesService,private authService: AuthService, private usersService: UsersService, private router: Router) {}
   formData : Company = {
     id: 0,
     name: '',
@@ -84,6 +86,7 @@ export class CompanyCreateComponent implements OnInit {
           this.companiesService.createCompany(newCompany, token).subscribe({
             next: (createdCompany) => {
               console.log('Company created successfully:', createdCompany);
+              this.router.navigate(['/companies']);
             },
             error: e => console.error('Error creating company:', e)
           });

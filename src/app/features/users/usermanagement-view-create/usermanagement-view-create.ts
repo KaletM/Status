@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import User from '@app/core/entities/User';
 import { AuthService } from '@app/core/services/authService';
 import { UsersService } from '@app/core/services/usersService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usermanagement-view-create',
@@ -15,13 +16,11 @@ import { UsersService } from '@app/core/services/usersService';
 export class UsermanagementViewCreate {
   userForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UsersService, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private userService: UsersService, private authService: AuthService, private router: Router) {
     this.userForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       passwordHash: ['', Validators.required],
-      restaurantId: [null, Validators.required],
-      restaurantBranchId: [null],
       roleId: [null, Validators.required]
     });
   }
@@ -31,6 +30,7 @@ export class UsermanagementViewCreate {
 
     if (this.userForm.valid) {
       const currentSessionToken = this.authService.getCurrentSessionToken();
+      const currentUser = this.userService.getCurrentUser();
 
       currentSessionToken.subscribe({
         next: (token) => {
@@ -39,29 +39,42 @@ export class UsermanagementViewCreate {
             return;
           }
 
-          const newUser: User = {
-            id: '',
-            username: this.userForm.value.username,
-            email: this.userForm.value.email,
-            password: this.userForm.value.passwordHash,
-            restaurantId: this.userForm.value.restaurantId,
-            role: {
-              id: this.userForm.value.roleId,
-              name: '',
-              description: ''
-            },
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            name: ''
-          };
+          currentUser.subscribe({
+            next: (user) => {
+              if (!user || !user.restaurantId) {
+                console.error('No current user found.');
+                return;
+              }
 
+              const newUser: User = {
+                id: '',
+                username: this.userForm.value.username,
+                email: this.userForm.value.email,
+                password: this.userForm.value.passwordHash,
+                restaurantId: user.restaurantId,
+                role: {
+                  id: this.userForm.value.roleId,
+                  name: '',
+                  description: ''
+                },
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                name: ''
+              };
 
-          this.userService.createUser(newUser, token).subscribe({
-            next: (createdUser) => {
-              console.log('User created successfully:', createdUser);
+              this.userService.createUser(newUser, token).subscribe({
+                next: (createdUser) => {
+                  console.log('User created successfully:', createdUser);
+                  this.router.navigate(['/admin/users']);
+                },
+                error: e => console.error('Error creating user:', e)
+              });
             },
-            error: e => console.error('Error creating user:', e)
+            error: (err) => {
+              console.error('Failed to fetch current user:', err);
+            }
           });
+
         },
         error: (err) => {
           console.error('Failed to fetch session token:', err);

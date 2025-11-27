@@ -60,7 +60,7 @@ export class UsersService {
       "email": data.email,
       "passwordHash": data.password,
       "restaurantId": data.restaurantId,
-      "restaurantBranchId": 0,
+      "restaurantBranchId": null,
       "roleId": data.role.id
     }
 
@@ -70,7 +70,10 @@ export class UsersService {
       "Authorization": "Bearer " + token
     }
 
-    return this.http.post<any>(`${this.apiUrl}/data`, payload, {headers: headers});
+    console.log('Creating user with payload:', payload);
+
+
+    return this.http.post<any>(`${this.apiUrl}`, payload, {headers: headers});
   }
 
   updateData(id: string, data: User) : Observable<User> {

@@ -5,6 +5,7 @@ import { ErrorHandlerService } from '../error-handler'
 import { baseUrl, isTesting } from './ServiceSettings'
 import Company from '../entities/Company'
 import companiesTestdata from '../testdata/Companies'
+import { AuthService } from './authService'
 
 type GetFn = () => Observable<Company[]>
 type PostFn = (data: Company) => Observable<Company>
@@ -13,49 +14,83 @@ type DeleteFn = (id: string) => Observable<void>
 
 @Injectable({ providedIn: 'root' })
 export class CompaniesService {
-  private apiUrl = isTesting ? `${baseUrl}test/companies` : `${baseUrl}companies`
+  private apiUrl = isTesting ? `${baseUrl}test/companies` : `${baseUrl}/Restaurant`
   private getImpl!: GetFn
   private postImpl!: PostFn
   private putImpl!: PutFn
   private deleteImpl!: DeleteFn
 
-  constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) {
-    this.getImpl = isTesting
-      ? () => of(companiesTestdata)
-      : () =>
-          this.http.get<Company[]>(`${this.apiUrl}/data`).pipe(
-            catchError(e => {
-              this.errorHandler.handleError(e)
-              return throwError(() => e)
-            })
-          )
+  constructor(private http: HttpClient, private errorHandler: ErrorHandlerService,private authService: AuthService) {
 
-    this.postImpl = isTesting
-      ? (data: Company) => {
-          companiesTestdata.push(data)
-          return of(data)
-        }
-      : (data: Company) => this.http.post<Company>(`${this.apiUrl}/data`, data)
-
-    this.putImpl = isTesting
-      ? (id: string, data: Company) => {
-          const i = companiesTestdata.findIndex(x => x.id === id)
-          i >= 0 && (companiesTestdata[i] = data)
-          return of(data)
-        }
-      : (id: string, data: Company) => this.http.put<Company>(`${this.apiUrl}/data/${id}`, data)
-
-    this.deleteImpl = isTesting
-      ? (id: string) => {
-          const i = companiesTestdata.findIndex(x => x.id === id)
-          i >= 0 && companiesTestdata.splice(i, 1)
-          return of(void 0)
-        }
-      : (id: string) => this.http.delete<void>(`${this.apiUrl}/data/${id}`)
   }
 
-  getData(): Observable<Company[]> { return this.getImpl() }
-  postData(data: Company): Observable<Company> { return this.postImpl(data) }
-  updateData(id: string, data: Company): Observable<Company> { return this.putImpl(id, data) }
-  deleteData(id: string): Observable<void> { return this.deleteImpl(id) }
+
+  getData(token: string): Observable<Company[]> {
+    if (isTesting) {
+      console.log('Fetching companies in test mode')
+      return of(companiesTestdata)
+    }
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
+
+    return this.http.get<Company[]>(this.apiUrl,{headers: headers}).pipe(
+      catchError((error) => {
+        this.errorHandler.handleError(error)
+        return throwError(() => error)
+      })
+    )
+  }
+
+  createCompany(data: Company,token: string): Observable<Company> {
+    if (isTesting) {
+      console.log('Creating company in test mode:', data)
+      companiesTestdata.push(data)
+      return of(data)
+    }
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token
+    }
+
+    const payload = {
+      "id": 0,
+      "name": data.name,
+      "legalName": data.legalName,
+      "brandSlogan": "",
+      "description": "",
+      "email": data.email,
+      "phoneNumber": data.phoneNumber,
+      "website": "string",
+      "logoUrl": "string",
+      "bannerUrl": "string",
+      "taxId": "string",
+      "headquartersAddress": "string",
+      "country": data.country,
+      "region": data.region,
+      "isFranchiseModel": true,
+      "allowOnlineOrders": true,
+      "allowReservations": true,
+      "allowDelivery": true,
+      "facebookUrl": "string",
+      "instagramUrl": "string",
+      "twitterUrl": "string",
+      "tikTokUrl": "string",
+      "foundedDate": "2025-11-27T09:48:18.369Z",
+      "founder": "string"
+    }
+
+    return this.http.post<Company>(this.apiUrl, payload, {headers: headers}).pipe(
+      catchError((error) => {
+        this.errorHandler.handleError(error)
+        return throwError(() => error)
+      })
+    )
+  }
+
 }

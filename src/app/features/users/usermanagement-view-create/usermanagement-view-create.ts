@@ -1,45 +1,73 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import User from '@app/core/entities/User';
+import { AuthService } from '@app/core/services/authService';
+import { UsersService } from '@app/core/services/usersService';
 
 @Component({
   selector: 'app-usermanagement-view-create',
-  imports: [RouterLink],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './usermanagement-view-create.html',
   styleUrl: './usermanagement-view-create.css',
   standalone: true,
 })
 export class UsermanagementViewCreate {
-  // Campos del formulario
-  firstName: string = '';
-  lastName: string = '';
-  avatarPreview: string = 'JD';
-  selectedRole: string = '';
+  userForm: FormGroup;
 
-  // Método para actualizar el avatar
-  updateAvatarPreview() {
-    let initials = '';
-    if (this.firstName) initials += this.firstName[0].toUpperCase();
-    if (this.lastName) initials += this.lastName[0].toUpperCase();
-    this.avatarPreview = initials || 'JD';
-  }
-
-  // Seleccionar rol
-  selectRole(role: string) {
-    this.selectedRole = role;
-  }
-
-  // Envío del formulario
-  onSubmit() {
-    alert('User added successfully!');
-    console.log({
-      firstName: this.firstName,
-      lastName: this.lastName,
-      role: this.selectedRole,
+  constructor(private fb: FormBuilder, private userService: UsersService, private authService: AuthService) {
+    this.userForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      passwordHash: ['', Validators.required],
+      restaurantId: [null, Validators.required],
+      restaurantBranchId: [null],
+      roleId: [null, Validators.required]
     });
   }
 
-  // Volver atrás
-  goBack() {
-    window.history.back();
+  onSubmit(): void {
+    console.log('Form submitted:', this.userForm.value);
+
+    if (this.userForm.valid) {
+      const currentSessionToken = this.authService.getCurrentSessionToken();
+
+      currentSessionToken.subscribe({
+        next: (token) => {
+          if (!token) {
+            console.error('No valid session token found.');
+            return;
+          }
+
+          const newUser: User = {
+            id: '',
+            username: this.userForm.value.username,
+            email: this.userForm.value.email,
+            password: this.userForm.value.passwordHash,
+            restaurantId: this.userForm.value.restaurantId,
+            role: {
+              id: this.userForm.value.roleId,
+              name: '',
+              description: ''
+            },
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            name: ''
+          };
+
+
+          this.userService.createUser(newUser, token).subscribe({
+            next: (createdUser) => {
+              console.log('User created successfully:', createdUser);
+            },
+            error: e => console.error('Error creating user:', e)
+          });
+        },
+        error: (err) => {
+          console.error('Failed to fetch session token:', err);
+        }
+      });
+    }
   }
+
 }

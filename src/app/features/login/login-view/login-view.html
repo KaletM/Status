@@ -1,5 +1,5 @@
-<body>
-    <main class="login-container">
+<main>
+    <div class="login-container">
         <div class="login-header">
             <div class="logo">
                 <div class="logo-icon">S</div>
@@ -8,27 +8,29 @@
             <h1>Welcome Back</h1>
             <p>Sign in to your account to continue</p>
         </div>
-        <form id="loginForm">
+        <form id="loginForm" (ngSubmit)="onSubmit(formData.username, formData.password)">
             <div class="form-group">
-                <label for="email">Email Address</label>
+                <label for="email">User Name</label>
                 <div class="input-with-icon">
-                    <span class="material-icons">email</span>
+                    <span class="material-icons">person</span>
                     <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email"
+                    type="text"
+                    [(ngModel)]="formData.username"
+                        id="text"
+                        name="username"
+                        placeholder="Enter your user name"
                         required
                     />
                 </div>
             </div>
-    
+
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="input-with-icon">
                     <span class="material-icons">lock</span>
                     <input
                         type="password"
+                        [(ngModel)]="formData.password"
                         id="password"
                         name="password"
                         placeholder="Enter your password"
@@ -36,7 +38,7 @@
                     />
                 </div>
             </div>
-    
+
             <div class="remember-forgot">
                 <div class="remember-me">
                     <input type="checkbox" id="remember" name="remember">
@@ -44,15 +46,15 @@
                 </div>
                 <a href="#" class="forgot-password">Forgot password?</a>
             </div>
-    
+
             <button type="submit" class="btn btn-primary">
                 <span class="material-icons">login</span>
                 Sign In
             </button>
         </form>
-    
+
         <div class="login-footer">
             <p>Don't have an account? <a href="#" style="color: #667eea; text-decoration: none; font-weight: 500;">Contact administrator</a></p>
         </div>
-    </main>
-</body>
+      </div>
+  </main>

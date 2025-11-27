@@ -1,0 +1,202 @@
+:root {
+  --bg: #ffffff;
+  --line: #e5e7eb;
+  --muted: #6b7280;
+  --text: #111827;
+  --card: #f9fafb;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1);
+  --primary: #111;
+  --primary-contrast: #fff;
+  --success-bg: #dcfce7;
+  --success: #047857;
+  --success-border: #86efac;
+  --danger-bg: #fee2e2;
+  --danger: #b91c1c;
+  --danger-border: #fecaca;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+}
+
+main {
+  width: 100%;
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  min-height: 100vh;
+}
+
+.page {
+  width: 100%;
+  max-width: 800px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.toolbar h1 {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #222;
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #f9fafb;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  padding: 32px;
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.form-label.required::after {
+  content: " *";
+  color: var(--danger);
+}
+
+.form-input {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-color: #000;
+}
+
+.form-select {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  outline: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.form-select:focus {
+  border-color: #000;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 4px;
+  display: none;
+}
+
+.form-input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--danger);
+}
+
+.form-input:invalid:not(:focus):not(:placeholder-shown) + .error-message {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .toolbar h1 {
+    font-size: 28px;
+  }
+}

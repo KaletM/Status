@@ -38,13 +38,27 @@ export const routes: Routes = [
     ],
   },
   {
-    path: '',
+    path: 'waiter',
     component: Waiterlayout,
   },
   {
     path: 'companies',
-    loadComponent: () =>
-      import('./features/companies/company-view/company-view').then((m) => m.CompanyViewComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () =>
+          import('./features/companies/company-view/company-view').then(
+            (m) => m.CompanyViewComponent
+          ),
+      },
+      {
+        path: 'new',
+        loadComponent: () =>
+          import('./features/companies/company-create/company-view').then(
+            (m) => m.CompanyCreateComponent
+          ),
+      }
+    ]
   },
   {
     path: 'sales',
@@ -53,7 +67,11 @@ export const routes: Routes = [
   },
   {
     path: 'kitchen',
-    loadComponent: () => 
+    loadComponent: () =>
       import('./features/kitchen-view/kitchen-view').then((m) => m.KitchenView)
+  },
+  {
+    path: '',
+    loadComponent: () => import('./features/login/login-view/login-view').then((m) => m.LoginView),
   }
 ];

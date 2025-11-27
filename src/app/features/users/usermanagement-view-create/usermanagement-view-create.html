@@ -7,105 +7,70 @@
   </div>
 
   <div class="form-container">
-    <form id="addUserForm">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <div class="form-grid">
         <div class="form-group">
           <label for="firstName" class="required">First Name</label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
+            formControlName="firstName"
             placeholder="Enter first name"
-            required
           />
         </div>
 
         <div class="form-group">
           <label for="lastName" class="required">Last Name</label>
-          <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required />
+          <input type="text" formControlName="lastName" placeholder="Enter last name" />
         </div>
 
         <div class="form-group">
           <label for="email" class="required">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Enter email address" required />
+          <input type="email" formControlName="email" placeholder="Enter email address" />
         </div>
 
         <div class="form-group">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Enter phone number" />
+          <input type="tel" formControlName="phone" placeholder="Enter phone number" />
         </div>
 
         <div class="form-group full-width">
           <label class="required">Role</label>
           <div class="roles-grid">
             <div
-              class="role-badge role-admin selected"
-              data-role="administrator"
-              [class.selected]="selectedRole === 'administrador'"
-              (click)="selectRole('administrador')"
+              class="role-badge role-admin"
+              [class.selected]="userForm.get('role')?.value === 'administrador'"
+              (click)="userForm.get('role')?.setValue('administrador')"
             >
               Administrator
             </div>
             <div
               class="role-badge role-waiter"
-              [class.selected]="selectedRole === 'waiter'"
-              (click)="selectRole('waiter')"
+                [class.selected]="userForm.get('role')?.value === 'waiter'"
+                (click)="userForm.get('role')?.setValue('waiter')"
             >
               Waiter
             </div>
             <div
               class="role-badge role-cook"
-              data-role="cook"
-              [class.selected]="selectedRole === 'cook'"
-              (click)="selectRole('cook')"
+              [class.selected]="userForm.get('role')?.value === 'cook'"
+              (click)="userForm.get('role')?.setValue('cook')"
             >
               Cook
             </div>
             <div
               class="role-badge role-cashier"
-              data-role="cashier"
-              [class.selected]="selectedRole === 'cashier'"
-              (click)="selectRole('cashier')"
+              [class.selected]="userForm.get('role')?.value === 'cashier'"
+              (click)="userForm.get('role')?.setValue('cashier')"
             >
               Cashier
             </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="required">Status</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="status" value="active" checked />
-              <span class="status-badge status-active">Active</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="status" value="inactive" />
-              <span class="status-badge status-inactive">Inactive</span>
-            </label>
-          </div>
-        </div>
 
-        <!-- <div class="form-group full-width">
-          <label>Profile Picture</label>
-          <div class="avatar-preview">
-            <div class="avatar-placeholder" id="avatarPreview">JD</div>
-            <div class="avatar-upload">
-              <div class="upload-btn">
-                <span class="material-icons">cloud_upload</span>
-                Upload Photo
-              </div>
-              <small style="color: #718096">JPG, PNG or GIF - Max 2MB</small>
-            </div>
-          </div>
-        </div> -->
       </div>
 
       <div class="form-actions">
-        <button type="button" class="btn btn-secondary">
-          <span class="material-icons">cancel</span>
-          Cancel
-        </button>
         <button type="submit" class="btn btn-primary">
           <span class="material-icons">person_add</span>
           Add User

@@ -6,38 +6,45 @@ import { baseUrl } from './ServiceSettings';
 import { isTesting } from './ServiceSettings';
 import usersTestdata from '../testdata/Users';
 import User from '../entities/User';
+import { AuthService } from './authService';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  
-  private apiUrl = isTesting ? `${baseUrl}test/users` : `${baseUrl}users`;
+
+  private apiUrl = isTesting ? `${baseUrl}test/users` : `${baseUrl}/User`;
 
   constructor(
     private http: HttpClient,
-    private errorHandler: ErrorHandlerService) {  }
+    private errorHandler: ErrorHandlerService,
+    private authService: AuthService) {  }
 
-  getData() : Observable<User[]> {
+  getData(token: string) : Observable<User[]> {
 
     if (isTesting) {
       console.log('Fetching data in test mode');
-      
+
       return new Observable<User[]>(subscriber => {
         subscriber.next(usersTestdata);
         subscriber.complete();
       });
     }
 
-    return this.http.get<User[]>(`${this.apiUrl}/data`).pipe(
+
+    const headers = { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer ' + token };
+
+    const response = this.http.get<User[]>(`${this.apiUrl}`, { headers: headers }).pipe(
       catchError((error => {
         this.errorHandler.handleError(error);
         throw throwError(() => error);
       }))
     );
+
+    return response;
   }
 
-  postData(data: User) : Observable<User> {
+  createUser(data: User,token: string) : Observable<User> {
 
     if (isTesting) {
       console.log('Posting data in test mode:', data);
@@ -48,7 +55,22 @@ export class UsersService {
       });
     }
 
-    return this.http.post<any>(`${this.apiUrl}/data`, data);
+    const payload = {
+      "username": data.username,
+      "email": data.email,
+      "passwordHash": data.password,
+      "restaurantId": data.restaurantId,
+      "restaurantBranchId": 0,
+      "roleId": data.role.id
+    }
+
+    const headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer " + token
+    }
+
+    return this.http.post<any>(`${this.apiUrl}/data`, payload, {headers: headers});
   }
 
   updateData(id: string, data: User) : Observable<User> {
@@ -87,4 +109,50 @@ export class UsersService {
     return this.http.delete<void>(`${this.apiUrl}/data/${id}`);
   }
 
+  getCurrentUser() : Observable<User | null> {
+    return this.authService.getCurrentUser();
+  }
+
+  getUserByUsername(username: string) : Observable<User | null> {
+    if (isTesting) {
+      console.log('Fetching user by username in test mode:', username);
+      const user = usersTestdata.find(item => item.username === username) || null;
+      return new Observable<User | null>(subscriber => {
+        subscriber.next(user);
+        subscriber.complete();
+      });
+    }
+
+    console.log('Fetching user by username from API:', username);
+
+
+    return this.http.get<User>(`${this.apiUrl}/by-username/${username}`);
+  }
+
+  getUserByCompanyId(restaurantId: string,token: string) : Observable<User[] | null> {
+    if (isTesting) {
+      console.log('Fetching users by restaurant ID in test mode:', restaurantId);
+      const users = usersTestdata.filter(item => item.id === restaurantId) || null;
+      return new Observable<User[] | null>(subscriber => {
+        subscriber.next(users);
+        subscriber.complete();
+      });
+    }
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token };
+
+
+
+    const response = this.http.get<User[]>(`${this.apiUrl}/restaurant/${restaurantId}`, { headers: headers }).pipe(
+      catchError((error => {
+        this.errorHandler.handleError(error);
+        throw throwError(() => error);
+      }))
+    );
+
+    return response;
+  }
 }

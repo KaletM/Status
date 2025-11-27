@@ -2,7 +2,7 @@
   <div class="page-header">
     <div>
       <h1>User Management</h1>
-  
+
       <div class="filters">
         <div class="filter-item active">
           All
@@ -38,8 +38,8 @@
         <th>ACTIONS</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
+    <tbody >
+      <!-- <tr>
         <td>
           <div class="user-info">
             <div class="user-avatar">JD</div>
@@ -152,6 +152,31 @@
         <td>david.brown@email.com</td>
         <td>
           <span class="status-badge status-active">Active</span>
+        </td>
+        <td>
+          <div class="actions">
+            <button class="action-btn edit">
+              <span class="material-icons">edit</span>
+            </button>
+            <button class="action-btn delete">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </td>
+      </tr> -->
+      <tr *ngFor="let user of data">
+        <td>
+          <div class="user-info">
+            <div class="user-avatar">{{ user.username.at(0) }}</div>
+            <div class="user-name">{{ user.username }}</div>
+          </div>
+        </td>
+        <td>
+          <span class="role-badge" [ngClass]="'role-' + user.role.name.toLocaleLowerCase()">{{ user.role.name }}</span>
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span class="status-badge">Active</span>
         </td>
         <td>
           <div class="actions">

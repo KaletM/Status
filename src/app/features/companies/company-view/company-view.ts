@@ -3,37 +3,59 @@ import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 import { CompaniesService } from '../../../core/services/companiesService'
 import Company from '../../../core/entities/Company'
+import { AuthService } from '@app/core/services/authService'
+import { RouterLink } from '@angular/router'
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-company-view',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './company-view.html',
   styleUrls: ['./company-view.css']
 })
+
 export class CompanyViewComponent implements OnInit {
   data: Company[] = []
   filtered: Company[] = []
   query = ''
 
-  constructor(private companiesService: CompaniesService) {}
+  constructor(private companiesService: CompaniesService,private authService: AuthService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.companiesService.getData().subscribe({
-      next: r => { this.data = r; this.filtered = r },
-      error: e => console.error(e)
+    console.log("Company View Loaded");
+
+    const currentSessionToken = this.authService.getCurrentSessionToken();
+
+    currentSessionToken.subscribe({
+      next: (token) => {
+
+        if (!token) {
+          console.error('No valid session token found.');
+          return;
+        }
+
+        this.companiesService.getData(token).subscribe({
+          next: (companies) => {
+            console.log(companies);
+            this.data = companies || [];
+            console.log(this.data);
+
+            this.cdr.detectChanges();
+          },
+          error: e => console.error(e)
+        })
+
+      },
+      error: (err) => {
+        console.error('Failed to fetch session token:', err);
+      }
     })
+
   }
 
-  filter(): void {
-    const q = this.query.trim().toLowerCase()
-    this.filtered = this.data.filter(c =>
-      (c.name + ' ' + c.address + ' ' + c.contactPerson + ' ' + c.contactPhone)
-        .toLowerCase().includes(q)
-    )
-  }
 
-  onAdd(): void {}
-  onEdit(id: string): void {}
-  onDelete(id: string): void {}
+
+  onEdit(id: number): void {}
+  onDelete(id: number): void {}
 }

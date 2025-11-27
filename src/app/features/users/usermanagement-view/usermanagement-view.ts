@@ -6,6 +6,9 @@ import { RouterLink } from '@angular/router';
 import User from '@app/core/entities/User';
 import { UsersService } from '@app/core/services/usersService';
 import { response } from 'express';
+import { ChangeDetectorRef } from '@angular/core';
+import { AuthService } from '@app/core/services/authService';
+
 
 @Component({
   standalone: true,
@@ -18,29 +21,60 @@ import { response } from 'express';
 export class UsermanagementView implements OnInit {
   data: User[] = [];
 
+
+
   formData : User = {
     id: '',
     name: '',
     email: '',
     password: '',
-    role: 'admin',
+    role:  {
+      id: '',
+      name: '',
+      description : ''
+    },
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
+    username: '',
+    restaurantId: ''
   }
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService, private cdr: ChangeDetectorRef,private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.usersService.getData().subscribe({
-      next: (response) => (this.data = response),
-      error: (error) => console.error('There was an error!', error),
-    });
+
+    const currentUser = this.usersService.getCurrentUser();
+    const currentSessionToken = this.authService.getCurrentSessionToken();
+
+    currentSessionToken.subscribe((token) => {
+      if (!token) {
+        console.error('No valid session token found.');
+        return;
+      }
+      currentUser.subscribe((user) => {
+        console.log('Current User:', user?.restaurantId);
+
+        if (!user || !user.restaurantId) {
+          console.error('No current user found.');
+          return;
+        }
+
+        console.log('Fetching users for restaurant ID:', user.restaurantId);
+
+
+        const users = this.usersService.getUserByCompanyId(user?.restaurantId,token);
+        users.subscribe((users) => {
+          console.log('Fetched Users:', users);
+
+          this.data = users || [];
+          this.cdr.detectChanges();
+        });
+      });
+    })
+
+
+
   }
 
-  onSubmit(data: any): void {
-    this.usersService.postData(data).subscribe({
-      next: (response) => console.log('Data saved:', response),
-      error: (err) => console.error(err),
-    });
-  }
+
 }

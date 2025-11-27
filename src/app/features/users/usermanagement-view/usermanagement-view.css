@@ -194,12 +194,12 @@ main {
     main {
         padding: 1rem;
     }
-    
+
     .users-table {
         display: block;
         overflow-x: auto;
     }
-    
+
     .filters {
         flex-direction: column;
     }
